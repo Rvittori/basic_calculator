@@ -13,11 +13,8 @@
         <div class="calculator-btn-row">
             <div class="calculator-btn-col">
 
-                <button class="num-button" type="button" value="AC" onclick="clickOp('AC')">AC</button>
-                <button class="num-button" type="button" value="()" onclick="clickOp('(')">(</button>
-                <button class="num-button" type="button" value="()" onclick="clickOp(')')">)</button>
-                <button class="num-button" type="button" value="%" onclick="clickOp('%')">%</button>
-                <button class="num-button" type="button" value="/" onclick="clickOp('/')">/</button>
+
+
             </div>
         </div>
         <div class="calculator-btn-row">
@@ -25,7 +22,7 @@
                 <button class="num-button" type="button" value="7" onclick="clickNum('7')">7</button>
                 <button class="num-button" type="button" value="8" onclick="clickNum('8')">8</button>
                 <button class="num-button" type="button" value="9" onclick="clickNum('9')">9</button>
-                <button class="num-button" type="button" value="X" onclick="clickOp('x')">x</button>
+                <button class="num-button" type="button" value="*" onclick="clickOp('*')">x</button>
             </div>
         </div>
         <div class="calculator-btn-row">
@@ -48,8 +45,15 @@
             <div class="calculator-btn-col">
                 <button class="num-button" type="button" value="0" onclick="clickNum('0')">0</button>
                 <button class="num-button" type="button" value="." onclick="clickOp('.')">.</button>
-                <button class="num-button" type="button" value="Del" onclick="clickDel()">Del</button>
-                <button class="num-button" type="submit" value="=">=</button>
+                <button class="num-button" type="button" value="/" onclick="clickOp('/')">/</button>
+                <button class="num-button" type="button" value="AC" onclick="clickOp('AC')">AC</button>
+                <input type="hidden" name="action" value="calculate">
+            </div>
+        </div>
+        <div class="calculator-btn-row">
+            <div class="calculator-btn-col">
+                <button class="num-button" type="submit" value="=" onclick="clickOp('=')">=</button>
+                <input type="hidden" name="action" value="calculate">
             </div>
         </div>
     </div>
