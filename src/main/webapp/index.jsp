@@ -12,13 +12,6 @@
     <div class="calculator-btn-container">
         <div class="calculator-btn-row">
             <div class="calculator-btn-col">
-
-
-
-            </div>
-        </div>
-        <div class="calculator-btn-row">
-            <div class="calculator-btn-col">
                 <button class="num-button" type="button" value="7" onclick="clickNum('7')">7</button>
                 <button class="num-button" type="button" value="8" onclick="clickNum('8')">8</button>
                 <button class="num-button" type="button" value="9" onclick="clickNum('9')">9</button>
@@ -52,7 +45,7 @@
         </div>
         <div class="calculator-btn-row">
             <div class="calculator-btn-col">
-                <button class="num-button" type="submit" value="=" onclick="clickOp('=')">=</button>
+                <button class="num-button" type="submit" value="=">=</button>
                 <input type="hidden" name="action" value="calculate">
             </div>
         </div>
@@ -78,7 +71,6 @@
 
     function clickDel() {
         let display = document.getElementById("display");
-
         display.value = display.value.slice(0, -1)
     }
 </script>
