@@ -14,7 +14,8 @@
             <div class="calculator-btn-col">
 
                 <button class="num-button" type="button" value="AC" onclick="clickOp('AC')">AC</button>
-                <button class="num-button" type="button" value="()" onclick="clickOp('()')">()</button>
+                <button class="num-button" type="button" value="()" onclick="clickOp('(')">(</button>
+                <button class="num-button" type="button" value="()" onclick="clickOp(')')">)</button>
                 <button class="num-button" type="button" value="%" onclick="clickOp('%')">%</button>
                 <button class="num-button" type="button" value="/" onclick="clickOp('/')">/</button>
             </div>
@@ -54,30 +55,28 @@
     </div>
 </form>
 <script>
-function clickNum(num) {
-    let display = document.getElementById("display");
+    function clickNum(num) {
+        let display = document.getElementById("display");
 
-    display.value = display.value + num;
-
-}
-
-function clickOp(op) {
-    let display = document.getElementById("display");
-
-    if (op === "AC") {
-        display.value = "";
-    } else {
-        display.value = display.value + " " + op + " ";
+        display.value = display.value + num;
     }
-    document.getElementById("display").value = value + " " + op + " ";
-}
 
-function clickDel() {
-    let display = document.getElementById("display");
+    function clickOp(op) {
+        let display = document.getElementById("display");
 
-    display.value = display.value.slice(0, -1)
+        if (op === "AC") {
+            display.value = "";
+        } else {
+            display.value = display.value + " " + op + " ";
+        }
+        document.getElementById("display").value = value + " " + op + " ";
+    }
 
-}
+    function clickDel() {
+        let display = document.getElementById("display");
+
+        display.value = display.value.slice(0, -1)
+    }
 </script>
 </body>
 </html>
