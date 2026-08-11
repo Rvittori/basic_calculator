@@ -8,6 +8,7 @@
 <form class="calculate-form" action="calculator" method="post">
     <div class="clac-display-container">
         <input id="display" name="display-value" type="text" readonly>
+
     </div>
     <div class="calculator-btn-container">
         <div class="calculator-btn-row">
@@ -74,5 +75,6 @@
         display.value = display.value.slice(0, -1)
     }
 </script>
+
 </body>
 </html>
