@@ -39,25 +39,25 @@ public class Calculator {
         this.operator = operator;
     }
 
-    public double addition(double num1, double num2, char operator) {
+    public double addition(double num1, double num2) {
 
         double culculatedNum  = num1 + num2;
         return culculatedNum;
     }
 
-    public double subtraction(double num1, double num2, char operator) {
+    public double subtraction(double num1, double num2) {
 
         double culculatedNum = num1 - num2;
         return culculatedNum;
     }
 
-    public double multiplication(double num1, double num2, char operator) {
+    public double multiplication(double num1, double num2) {
 
         double culculatedNum = num1 * num2;
         return culculatedNum;
     }
 
-    public double division(double num1, double num2, char operator) {
+    public double division(double num1, double num2) {
 
         if (num2 == 0) {
             throw new IllegalArgumentException("Division by zero is undefined. Please try again.");
