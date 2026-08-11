@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +50,14 @@
                 <button class="num-button" type="submit" value="=">=</button>
                 <input type="hidden" name="action" value="calculate">
             </div>
+            <div class="calculator-btn-row">
+                <div class="calculator-btn-col">
+                <c:if test="${message != null}">
+                    <p><i>${message}</i></p>
+                </c:if>
+            </div>
+            </div>
+
         </div>
     </div>
 </form>
