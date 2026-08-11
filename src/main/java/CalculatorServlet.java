@@ -22,7 +22,7 @@ public class CalculatorServlet extends HttpServlet {
             System.out.println("DEBUG: expression: " + expression);
             if (expression != null && !expression.isEmpty()) {
 
-                Stack<Double> output = new Stack<>();
+                Stack<String> output = new Stack<>();
                 Stack<String> operators = new Stack<>();
 
                 String[] expressionList = expression.split("");
@@ -34,17 +34,32 @@ public class CalculatorServlet extends HttpServlet {
                     } else if (expressionList[i].equals("(") || expressionList[i].equals(")")){
                         continue;
                     } else if (isNumeric(expressionList[i])) {
-                        output.push(Double.parseDouble(expressionList[i]));
+                        output.push((expressionList[i]));
 
                     } else if (expressionList[i].equals("+") || expressionList[i].equals("-") || expressionList[i].equals("*") || expressionList[i].equals("/") || expressionList[i].equals("^")) {
-                        operators.push(expressionList[i]);
+
+
+                        if (operators.isEmpty()) {
+                            operators.push(expressionList[i]);
+                        } else {
+                            String onStack = operators.peek();
+                            int onStackPrecedence = getPrecedence(onStack);
+                            String currentOperator = expressionList[i];
+                            int currentOperatorPrecedence = getPrecedence(currentOperator);
+
+                            if (onStackPrecedence < currentOperatorPrecedence) {
+                                operators.push(currentOperator);
+                            } else if (onStackPrecedence == currentOperatorPrecedence) {
+                                String lastOperator = operators.pop();
+                                output.push(lastOperator);
+                            }
+                        }
+
                     }
                 }
 
-                for (int i: expressionArray) {
-                    System.out.println(i);
-                }
-
+                System.out.print(output);
+                System.out.print(operators);
                     String url = "/index.jsp";
                     getServletContext().getRequestDispatcher(url)
                             .forward(req, resp);
@@ -65,11 +80,11 @@ public class CalculatorServlet extends HttpServlet {
         }
     }
 
-    private static int getPrecedence(char c) {
-        return switch (c) {
-            case '+', '-' -> 1;
-            case '*', '/' -> 2;
-            case '^' -> 3;
+    private static int getPrecedence(String s) {
+        return switch (s) {
+            case "+", "-" -> 1;
+            case "*", "/" -> 2;
+            case "^" -> 3;
             default -> -1;
         };
     }
