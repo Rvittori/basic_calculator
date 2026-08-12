@@ -27,63 +27,41 @@ public class CalculatorServlet extends HttpServlet {
 
                 String[] expressionList = expression.split("");
 
-                int count = 0;
+
                 for (int i = 0; i < expressionList.length; i++) {
 
-                    if (isNumeric(expressionList[i])) {
-                        output.push((expressionList[i]));
-                        count = count + 1;
-
-                    } else if (expressionList[i].equals(" ")) {
-                        continue;
-
-                    } else if ((expressionList[i].equals("("))) {
+                    if (expressionList[i].equals("(")) {
                         operators.push(expressionList[i]);
-                        count = count + 1;
+                    } else if (isNumeric(expressionList[i])) {
+                        output.push(expressionList[i]);
+                    } else if (expressionList[i].equals("+") || expressionList[i].equals("-") ||
+                            expressionList[i].equals("*") || expressionList[i].equals("/") ||
+                            expressionList[i].equals("^")) {
 
-                    } else if (expressionList[i].equals(")")) {
-                        while (!operators.isEmpty()) {
-                            String currentOnStack = operators.pop();
-                            if (!currentOnStack.equals("(")) {
-                                output.push(currentOnStack);
-                            }
-                            count = count + 1;
-                        }
-                    } else if (expressionList[i].equals("+") || expressionList[i].equals("-") || expressionList[i].equals("*") || expressionList[i].equals("/") || expressionList[i].equals("^")) {
-
-                        // put first operator on the op stack
                         if (operators.isEmpty()) {
                             operators.push(expressionList[i]);
-                            count = count + 1;
-                            // handle subsequent operators
                         } else {
-                            String onStack = operators.peek();
-                            if (onStack.equals("(")) {
-                                operators.push(expressionList[i]);
-                                count = count + 1;
-                            } else {
-                                int onStackPrecedence = getPrecedence(onStack);
-                                String currentOperator = expressionList[i];
-                                int currentOperatorPrecedence = getPrecedence(currentOperator);
+                            String currentExpressionItem = expressionList[i];
+                            int currentExpressionItemPrecedence = getPrecedence(currentExpressionItem);
+                            int lastItemOnOperatorsStackPrecedence =getPrecedence(operators.peek());
 
-                                if (onStackPrecedence < currentOperatorPrecedence) {
-                                    operators.push(currentOperator);
-                                    count = count + 1;
-                                } else if (onStackPrecedence == currentOperatorPrecedence) {
-                                    String lastOperatorOnStack = operators.pop();
-                                    output.push(lastOperatorOnStack);
-                                    operators.push(currentOperator);
-                                    count = count + 1;
-                                }
+                            if (currentExpressionItemPrecedence > lastItemOnOperatorsStackPrecedence) {
+                                output.push(currentExpressionItem);
+                            } else if (currentExpressionItemPrecedence <= lastItemOnOperatorsStackPrecedence) {
+                                String lastItemOnOperatorsStack = operators.pop();
+                                output.push(lastItemOnOperatorsStack);
+                                operators.push(currentExpressionItem);
                             }
-
                         }
                     }
                 }
-
+                while (!operators.isEmpty()) {
+                    String currentOperatorItem = (operators.pop());
+                    output.push(currentOperatorItem);
+                }
 
                 System.out.print("Output stack: " + output);
-                System.out.print("0perators stack: " + operators);
+                System.out.print("Operators stack: " + operators);
                     String url = "/index.jsp";
                     getServletContext().getRequestDispatcher(url)
                             .forward(req, resp);
