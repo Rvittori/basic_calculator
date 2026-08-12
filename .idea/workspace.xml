@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7c2ea83-c43e-46c9-adf2-ec01060085d9" name="Changes" comment="Almost have algorithm working, need to figure out getting the final operator onto the correct stack">
+    <list default="true" id="f7c2ea83-c43e-46c9-adf2-ec01060085d9" name="Changes" comment="Got the Shunting Yard alorigthm working! Do not go back beyond this point or it will break. Still working on getting calculations working.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,19 +20,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Rvittori"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Rvittori&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Rvittori/basic_calculator",
-    "accountId": "a481db7e-dab5-4702-9b38-123caca89c21"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Rvittori/basic_calculator&quot;,
+    &quot;accountId&quot;: &quot;a481db7e-dab5-4702-9b38-123caca89c21&quot;
   }
-}]]></component>
+}</component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -48,10 +48,10 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="3HmWdsuaaBXIad5JNTz2FdqafpH" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -197,12 +197,37 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Had to delete .idea as last resort as things were suddenly not working properly, all files showing as unversioned now. Commiting them again." />
     <MESSAGE value="Working through the Shunting Yard algorithm to allow for the more complex calculator logic initially desired" />
     <MESSAGE value="Put calculator buttons back to how they were at the start minus the % for the moment" />
     <MESSAGE value="odds and ends" />
     <MESSAGE value="Almost have algorithm working, need to figure out getting the final operator onto the correct stack" />
-    <option name="LAST_COMMIT_MESSAGE" value="Almost have algorithm working, need to figure out getting the final operator onto the correct stack" />
+    <MESSAGE value="Got the shunting yard algorithm working!! Do not go back beyond this point or you will break everything." />
+    <MESSAGE value="Close to having algorithm working" />
+    <MESSAGE value="Got the Shunting Yard alorigthm working! Do not go back beyond this point or it will break. Still working on getting calculations working." />
+    <option name="LAST_COMMIT_MESSAGE" value="Got the Shunting Yard alorigthm working! Do not go back beyond this point or it will break. Still working on getting calculations working." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/CalculatorServlet.java</url>
+          <line>153</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

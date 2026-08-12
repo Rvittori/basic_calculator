@@ -18,35 +18,39 @@ public class CalculatorServlet extends HttpServlet {
 
         if (action.equals("calculate")) {
 
-            Stack<String> reversedPostfix = getReversedPostfix(req);
+            Stack<String> polishNotation = getReversedPostfix(req);
 
             Calculator calculator = new Calculator();
-            int operand1;
+            int operand1 = 0;
             int operand2 = 0;
             String operator;
             double result = 0.00;
-            while (!reversedPostfix.isEmpty()) {
-                if (isNumeric(reversedPostfix.peek())) {
-                    operand1  = Integer.parseInt(reversedPostfix.pop());
-                    if (isNumeric(reversedPostfix.peek())) {
-                        operand2 = Integer.parseInt(reversedPostfix.pop());
-                        while (isNumeric(reversedPostfix.peek())) {
-                            continue;
-                        }
-                        } if (!isNumeric(reversedPostfix.peek())) {
-                        operator = reversedPostfix.pop();
-                        switch (operator) {
-                            case "+" -> result = calculator.addition(operand1, operand2);
-                            case "-" -> result = calculator.subtraction(operand1, operand2);
-                            case "*" -> result = calculator.multiplication(operand1, operand2);
-                            case "/" -> result = calculator.division(operand1, operand2);
-                            case "^" -> result = Math.pow(operand1, operand2);
-                        }
+
+
+            while (!polishNotation.isEmpty()) {
+
+                if (isNumeric(polishNotation.peek())) {
+                    operand1 = Integer.parseInt(polishNotation.pop());
+                }
+                if (isNumeric(polishNotation.peek())) {
+                    operand2 = Integer.parseInt(polishNotation.pop());
+                } else {
+                    operator = polishNotation.pop();
+                }
+                if (!isNumeric(polishNotation.peek())) {
+                    operator = polishNotation.pop();
+
+                    switch (operator) {
+                        case "+" -> result = calculator.addition(operand1, operand2);
+                        case "-" -> result = calculator.subtraction(operand1, operand2);
+                        case "*" -> result = calculator.multiplication(operand1, operand2);
+                        case "/" -> result = calculator.division(operand1, operand2);
+                        case "^" -> result = Math.pow(operand1, operand2);
                     }
                 }
             }
-            System.out.print(result);
 
+            System.out.print(result);
             String url = "/index.jsp";
             getServletContext().getRequestDispatcher(url)
                     .forward(req, resp);
@@ -78,6 +82,7 @@ public class CalculatorServlet extends HttpServlet {
 
     private Stack<String> getReversedPostfix(HttpServletRequest req) {
         String expression = req.getParameter("display-value");
+        Stack<String> polishNotation = new Stack<>(); // so all of expression is in one stack
         Stack<String> reversedPostfix = new Stack<>(); // so first off is start of expression
 
         System.out.println("DEBUG: expression: " + expression);
@@ -86,7 +91,7 @@ public class CalculatorServlet extends HttpServlet {
             Stack<String> output = new Stack<>();
             Stack<String> operators = new Stack<>();
 
-            String[] expressionList = expression.split("");
+            String[] expressionList = expression.split(" ");
 
 
             int listLength = expressionList.length;
@@ -137,15 +142,19 @@ public class CalculatorServlet extends HttpServlet {
 
 
             while (!output.isEmpty()) {
-                reversedPostfix.push(output.pop());
+                polishNotation.push(output.pop());
             }
+//            while (!polishNotation.isEmpty()) {
+//                reversedPostfix.push(polishNotation.pop());
+//            }
 
 
             System.out.print("Output stack: " + output);
             System.out.print("Operators stack: " + operators);
-            System.out.print("ReverseStack: " + reversedPostfix);
+            System.out.println("PN stack: " + polishNotation);
+//            System.out.print("RPN stack " + reversedPostfix);
         }
-        return reversedPostfix;
+        return polishNotation;
     }
 }
 
