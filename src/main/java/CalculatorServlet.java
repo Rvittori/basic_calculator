@@ -27,11 +27,12 @@ public class CalculatorServlet extends HttpServlet {
 
                 String[] expressionList = expression.split("");
 
-
-                for (int i = 0; i < expressionList.length; i++) {
+                int listLength = expressionList.length;
+                for (int i = 0; i < listLength; i++) {
 
                     if (expressionList[i].equals("(")) {
                         operators.push(expressionList[i]);
+
                     } else if (isNumeric(expressionList[i])) {
                         output.push(expressionList[i]);
                     } else if (expressionList[i].equals("+") || expressionList[i].equals("-") ||
@@ -46,17 +47,25 @@ public class CalculatorServlet extends HttpServlet {
                             int lastItemOnOperatorsStackPrecedence =getPrecedence(operators.peek());
 
                             if (currentExpressionItemPrecedence > lastItemOnOperatorsStackPrecedence) {
-                                output.push(currentExpressionItem);
+                                operators.push(currentExpressionItem);
                             } else if (currentExpressionItemPrecedence <= lastItemOnOperatorsStackPrecedence) {
                                 String lastItemOnOperatorsStack = operators.pop();
                                 output.push(lastItemOnOperatorsStack);
                                 operators.push(currentExpressionItem);
                             }
                         }
+                    } else if (expressionList[i].equals(")")) {
+                        while (!operators.peek().equals("(")) {
+                            String currentOperatorStackItem = operators.pop();
+                            output.push(currentOperatorStackItem);
+                        }
                     }
                 }
                 while (!operators.isEmpty()) {
                     String currentOperatorItem = (operators.pop());
+                    if (currentOperatorItem.equals("(")) {
+                        continue;
+                    }
                     output.push(currentOperatorItem);
                 }
 
