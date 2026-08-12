@@ -27,39 +27,63 @@ public class CalculatorServlet extends HttpServlet {
 
                 String[] expressionList = expression.split("");
 
+                int count = 0;
                 for (int i = 0; i < expressionList.length; i++) {
 
-                    if (expressionList[i].equals(" ")) {
-                        continue;
-                    } else if (expressionList[i].equals("(") || expressionList[i].equals(")")){
-                        continue;
-                    } else if (isNumeric(expressionList[i])) {
+                    if (isNumeric(expressionList[i])) {
                         output.push((expressionList[i]));
+                        count = count + 1;
 
+                    } else if (expressionList[i].equals(" ")) {
+                        continue;
+
+                    } else if ((expressionList[i].equals("("))) {
+                        operators.push(expressionList[i]);
+                        count = count + 1;
+
+                    } else if (expressionList[i].equals(")")) {
+                        while (!operators.isEmpty()) {
+                            String currentOnStack = operators.pop();
+                            if (!currentOnStack.equals("(")) {
+                                output.push(currentOnStack);
+                            }
+                            count = count + 1;
+                        }
                     } else if (expressionList[i].equals("+") || expressionList[i].equals("-") || expressionList[i].equals("*") || expressionList[i].equals("/") || expressionList[i].equals("^")) {
 
-
+                        // put first operator on the op stack
                         if (operators.isEmpty()) {
                             operators.push(expressionList[i]);
+                            count = count + 1;
+                            // handle subsequent operators
                         } else {
                             String onStack = operators.peek();
-                            int onStackPrecedence = getPrecedence(onStack);
-                            String currentOperator = expressionList[i];
-                            int currentOperatorPrecedence = getPrecedence(currentOperator);
+                            if (onStack.equals("(")) {
+                                operators.push(expressionList[i]);
+                                count = count + 1;
+                            } else {
+                                int onStackPrecedence = getPrecedence(onStack);
+                                String currentOperator = expressionList[i];
+                                int currentOperatorPrecedence = getPrecedence(currentOperator);
 
-                            if (onStackPrecedence < currentOperatorPrecedence) {
-                                operators.push(currentOperator);
-                            } else if (onStackPrecedence == currentOperatorPrecedence) {
-                                String lastOperator = operators.pop();
-                                output.push(lastOperator);
+                                if (onStackPrecedence < currentOperatorPrecedence) {
+                                    operators.push(currentOperator);
+                                    count = count + 1;
+                                } else if (onStackPrecedence == currentOperatorPrecedence) {
+                                    String lastOperatorOnStack = operators.pop();
+                                    output.push(lastOperatorOnStack);
+                                    operators.push(currentOperator);
+                                    count = count + 1;
+                                }
                             }
-                        }
 
+                        }
                     }
                 }
 
-                System.out.print(output);
-                System.out.print(operators);
+
+                System.out.print("Output stack: " + output);
+                System.out.print("0perators stack: " + operators);
                     String url = "/index.jsp";
                     getServletContext().getRequestDispatcher(url)
                             .forward(req, resp);
