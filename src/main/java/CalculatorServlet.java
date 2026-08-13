@@ -17,7 +17,9 @@ public class CalculatorServlet extends HttpServlet {
 
         if (action.equals("calculate")) {
 
-            Stack<Character> reversePostFixExpression = getReversePostFix(req);
+
+            String cleanedExpression = getCleanExpression(req.getParameter("display-value"));
+            Stack<String> reversePostFixExpression = getReversePostFix(cleanedExpression);
 
 
             String url = "/index.jsp";
@@ -34,59 +36,79 @@ public class CalculatorServlet extends HttpServlet {
         }
     }
 
-    private static int getPrecedence(char c) {
-        if (c == '+' || c =='-') {
+    private static int getPrecedence(String s) {
+        if (s.equals("+") || s.equals("-")) {
             return 1;
-        } else if (c == '*' || c == '/') {
+        } else if (s.equals("*") || s.equals("/")) {
             return 2;
-        } else if (c == '^') {
+        } else if (s.equals("^")) {
             return 3;
         } else {
             return -1;
         }
     }
 
-    private static Stack<Character> getReversePostFix(HttpServletRequest req) {
+    private static String getCleanExpression(String e) {
+        String cleanedExpression = e.replaceAll("\\s+", "");
+        return cleanedExpression;
+    }
 
-        String expression = req.getParameter("display-value");
 
+
+    private static Stack<String> getReversePostFix(String expression) {
         System.out.println("Expression: " + expression);
-        Stack<Character> output = new Stack();
-        Stack<Character> operators = new Stack<>();
+        Stack<String> output = new Stack();
+        Stack<String> operators = new Stack<>();
 
-        for (int i =0; i < expression.length(); i++) {
+
+        int i = 0;
+        while (i < expression.length()) {
             char c = expression.charAt(i);
 
             if (c == '(') {
-                operators.push(c);
-            } else if (isDigit(c)) {
-                output.push(c);
+                operators.push(String.valueOf(c));
+                i++;
 
-            } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^') {
+            } else if (isDigit(c)) {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while (i < expression.length() && isDigit(expression.charAt(i))) {
+                    stringBuilder.append(expression.charAt(i));
+                    i++;
+                }
+                System.out.println("Contents of string builder: " + stringBuilder);
+                output.push(String.valueOf(stringBuilder));
+            }
+
+            else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^') {
                 if (operators.isEmpty()) {
-                    operators.push(c);
+                    operators.push(String.valueOf(c));
+                    i++;
                 } else {
-                    int currentCharPrecedence = getPrecedence(c);
+                    int currentCharPrecedence = getPrecedence(String.valueOf(c));
                     int currentOpOnStackPrecedence = getPrecedence(operators.peek());
 
                     if (currentCharPrecedence > currentOpOnStackPrecedence) {
-                        operators.push(c);
+                        operators.push(String.valueOf(c));
+                        i++;
                     } else if (currentCharPrecedence <= currentOpOnStackPrecedence) {
-                        char currentOpOnStack = operators.pop();
+                        String currentOpOnStack = operators.pop();
                         output.push(currentOpOnStack);
-                        operators.push(c);
+                        operators.push(String.valueOf(c));
+                        i++;
                     }
                 }
             } else if (c == ')') {
                 while (!operators.isEmpty()) {
-                    char currentOnOpStack = operators.peek();
+                    String currentOnOpStack = operators.peek();
 
-                    if (currentOnOpStack != '(') {
+                    if (currentOnOpStack.equals("(")) {
                         output.push(operators.pop());
                     } else {
                         operators.pop();
                     }
                 }
+                i++;
             }
         }
         while (!operators.isEmpty()) {
