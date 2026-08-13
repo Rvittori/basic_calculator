@@ -17,7 +17,7 @@ public class CalculatorServlet extends HttpServlet {
 
         if (action.equals("calculate")) {
 
-
+            Stack<Character> reversePostFixExpression = getReversePostFix(req);
 
 
             String url = "/index.jsp";
@@ -50,7 +50,7 @@ public class CalculatorServlet extends HttpServlet {
 
         String expression = req.getParameter("display-value");
 
-        System.out.print("Expression: " + expression);
+        System.out.println("Expression: " + expression);
         Stack<Character> output = new Stack();
         Stack<Character> operators = new Stack<>();
 
@@ -61,17 +61,42 @@ public class CalculatorServlet extends HttpServlet {
                 operators.push(c);
             } else if (isDigit(c)) {
                 output.push(c);
+
             } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^') {
                 if (operators.isEmpty()) {
                     operators.push(c);
                 } else {
+                    int currentCharPrecedence = getPrecedence(c);
+                    int currentOpOnStackPrecedence = getPrecedence(operators.peek());
 
+                    if (currentCharPrecedence > currentOpOnStackPrecedence) {
+                        operators.push(c);
+                    } else if (currentCharPrecedence <= currentOpOnStackPrecedence) {
+                        char currentOpOnStack = operators.pop();
+                        output.push(currentOpOnStack);
+                        operators.push(c);
+                    }
+                }
+            } else if (c == ')') {
+                while (!operators.isEmpty()) {
+                    char currentOnOpStack = operators.peek();
+
+                    if (currentOnOpStack != '(') {
+                        output.push(operators.pop());
+                    } else {
+                        operators.pop();
+                    }
                 }
             }
         }
+        while (!operators.isEmpty()) {
+            output.push(operators.pop());
+        }
+
+        System.out.println("Output stack: " + output);
+        System.out.println("Operators stack: " + operators);
+        return output;
     }
-
-
 }
 
 
