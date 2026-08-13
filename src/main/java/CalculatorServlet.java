@@ -102,7 +102,7 @@ public class CalculatorServlet extends HttpServlet {
                 while (!operators.isEmpty()) {
                     String currentOnOpStack = operators.peek();
 
-                    if (currentOnOpStack.equals("(")) {
+                    if (!currentOnOpStack.equals("(")) {
                         output.push(operators.pop());
                     } else {
                         operators.pop();
