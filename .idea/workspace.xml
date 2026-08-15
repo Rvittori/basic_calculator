@@ -9,7 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7c2ea83-c43e-46c9-adf2-ec01060085d9" name="Changes" comment="Almost have the algorithm working again, issue with parenthesis, works for multi digits now.">
+    <list default="true" id="f7c2ea83-c43e-46c9-adf2-ec01060085d9" name="Changes" comment="Fixed error in else if branch for managing closing parenthesis. Algorithm now works">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +63,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Tomcat Server.Tomcat 11.0.22.executor": "Debug",
+    "Tomcat Server.Tomcat 11.0.22.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
@@ -218,20 +219,16 @@
     <MESSAGE value="Got the Shunting Yard alorigthm working! Do not go back beyond this point or it will break. Still working on getting calculations working." />
     <MESSAGE value="Appear to have the algorithm working, just need to add logic for multi digit numbers" />
     <MESSAGE value="Almost have the algorithm working again, issue with parenthesis, works for multi digits now." />
-    <option name="LAST_COMMIT_MESSAGE" value="Almost have the algorithm working again, issue with parenthesis, works for multi digits now." />
+    <MESSAGE value="Fixed error in else if branch for managing closing parenthesis. Algorithm now works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed error in else if branch for managing closing parenthesis. Algorithm now works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/CalculatorServlet.java</url>
-          <line>153</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/CalculatorServlet.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="10" />
+          <line>140</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
