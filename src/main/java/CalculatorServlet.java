@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Stack;
 import java.lang.Math;
 
@@ -57,16 +58,17 @@ public class CalculatorServlet extends HttpServlet {
 
     private Stack<String> getReversePostFix(String expression) {
         System.out.println("Expression: " + expression);
-        Stack<String> output = new Stack<>();
-        Stack<String> operators = new Stack<>();
-
+        ArrayList<String> output = new ArrayList<>();
+        ArrayList<String> operators = new ArrayList<>();
+//        Stack<String> output = new Stack<>();
+//        Stack<String> operators = new Stack<>();
 
         int i = 0;
         while (i < expression.length()) {
             char c = expression.charAt(i);
 
             if (c == '(') {
-                operators.push(String.valueOf(c));
+                operators.add(String.valueOf(c));
                 i++;
 
             } else if (isDigit(c)) {
@@ -77,21 +79,21 @@ public class CalculatorServlet extends HttpServlet {
                     i++;
                 }
                 System.out.println("Contents of string builder: " + stringBuilder);
-                output.push(String.valueOf(stringBuilder));
+                output.add(String.valueOf(stringBuilder));
             } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^') {
                 if (operators.isEmpty()) {
-                    operators.push(String.valueOf(c));
+                    operators.add(String.valueOf(c));
                     i++;
                 } else {
                     int currentCharPrecedence = getPrecedence(String.valueOf(c));
-                    int currentOpOnStackPrecedence = getPrecedence(operators.peek());
+                    int currentOpOnStackPrecedence = getPrecedence(operators.get(i));
 
                     if (currentCharPrecedence > currentOpOnStackPrecedence) {
-                        operators.push(String.valueOf(c));
+                        operators.add(String.valueOf(c));
                         i++;
                     } else if (currentCharPrecedence <= currentOpOnStackPrecedence) {
                         while (!operators.isEmpty() && currentCharPrecedence <= currentOpOnStackPrecedence) {
-                            if (operators.peek().equals("(")) {
+                            if (operators.get(i).equals("(")) {
                                 break;
                             } else {
                                 String currentOpOnStack = operators.pop();
@@ -99,12 +101,10 @@ public class CalculatorServlet extends HttpServlet {
                                 if (!operators.isEmpty()) {
                                     currentOpOnStackPrecedence = getPrecedence(operators.peek());
                                 }
-
                             }
                         }
                         operators.push(String.valueOf(c));
                         i++;
-
                     }
                 }
             } else if (c == ')') {
@@ -126,6 +126,9 @@ public class CalculatorServlet extends HttpServlet {
 
         System.out.println("Output stack: " + output);
         System.out.println("Operators stack: " + operators);
+        ArrayList<String> outputList;
+
+
         return output;
     }
 
@@ -141,6 +144,7 @@ public class CalculatorServlet extends HttpServlet {
 
 
     private double calculate(Stack<String> rpn) {
+        System.out.println("Incoming rpn stack: " + rpn);
         double result = 0.00;
         Calculator calculator = new Calculator();
         Stack<Double> operands = new Stack<>();
