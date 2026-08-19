@@ -3,9 +3,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Stack;
 import java.lang.Math;
 
 
@@ -21,7 +22,7 @@ public class CalculatorServlet extends HttpServlet {
 
 
             String cleanedExpression = getCleanExpression(req.getParameter("display-value"));
-            Stack<String> reversePostFixExpression = getReversePostFix(cleanedExpression);
+            ArrayList<String> reversePostFixExpression = getReversePostFix(cleanedExpression);
             double result = calculate(reversePostFixExpression);
 
             String url = "/index.jsp";
@@ -56,12 +57,11 @@ public class CalculatorServlet extends HttpServlet {
         return cleanedExpression;
     }
 
-    private Stack<String> getReversePostFix(String expression) {
+    private ArrayList<String> getReversePostFix(String expression) {
         System.out.println("Expression: " + expression);
         ArrayList<String> output = new ArrayList<>();
         ArrayList<String> operators = new ArrayList<>();
-//        Stack<String> output = new Stack<>();
-//        Stack<String> operators = new Stack<>();
+
 
         int i = 0;
         while (i < expression.length()) {
@@ -70,10 +70,8 @@ public class CalculatorServlet extends HttpServlet {
             if (c == '(') {
                 operators.add(String.valueOf(c));
                 i++;
-
             } else if (isDigit(c)) {
                 StringBuilder stringBuilder = new StringBuilder();
-
                 while (i < expression.length() && isDigit(expression.charAt(i))) {
                     stringBuilder.append(expression.charAt(i));
                     i++;
@@ -86,49 +84,49 @@ public class CalculatorServlet extends HttpServlet {
                     i++;
                 } else {
                     int currentCharPrecedence = getPrecedence(String.valueOf(c));
-                    int currentOpOnStackPrecedence = getPrecedence(operators.get(i));
+                    int currentOpOnStackPrecedence = getPrecedence(operators.get(operators.size() - 1));
 
                     if (currentCharPrecedence > currentOpOnStackPrecedence) {
                         operators.add(String.valueOf(c));
                         i++;
                     } else if (currentCharPrecedence <= currentOpOnStackPrecedence) {
                         while (!operators.isEmpty() && currentCharPrecedence <= currentOpOnStackPrecedence) {
-                            if (operators.get(i).equals("(")) {
+                            if (operators.get(operators.size() - 1).equals("(")) {
                                 break;
                             } else {
-                                String currentOpOnStack = operators.pop();
-                                output.push(currentOpOnStack);
+                                String currentOpOnStack = operators.remove(operators.size() - 1);
+                                output.add(currentOpOnStack);
                                 if (!operators.isEmpty()) {
-                                    currentOpOnStackPrecedence = getPrecedence(operators.peek());
+                                    currentOpOnStackPrecedence = getPrecedence(operators.get(operators.size() - 1));
                                 }
                             }
                         }
-                        operators.push(String.valueOf(c));
+                        operators.add(String.valueOf(c));
                         i++;
                     }
                 }
             } else if (c == ')') {
                 while (!operators.isEmpty()) {
-                    String currentOnOpStack = operators.peek();
+                    String currentOnOpStack = operators.get(0);
 
                     if (!currentOnOpStack.equals("(")) {
-                        output.push(operators.pop());
+                        output.add(operators.remove(0));
                     } else {
-                        operators.pop();
+                        operators.remove(0);
                     }
                 }
                 i++;
             }
         }
+
+
+        int j = 0;
         while (!operators.isEmpty()) {
-            output.push(operators.pop());
+            output.add(operators.remove(j));
         }
 
         System.out.println("Output stack: " + output);
         System.out.println("Operators stack: " + operators);
-        ArrayList<String> outputList;
-
-
         return output;
     }
 
@@ -143,36 +141,34 @@ public class CalculatorServlet extends HttpServlet {
     }
 
 
-    private double calculate(Stack<String> rpn) {
-        System.out.println("Incoming rpn stack: " + rpn);
+    private double calculate(ArrayList<String> rpn) {
+        System.out.println("Incoming rpn list: " + rpn);
         double result = 0.00;
         Calculator calculator = new Calculator();
-        Stack<Double> operands = new Stack<>();
+        ArrayList<String> operands = new ArrayList<>();
         String operator = "";
 
-        while (!rpn.isEmpty()) {
-            if (!isDigit(rpn.peek())) {
-                operator = rpn.pop();
-
-                double rightOperand = Double.parseDouble(rpn.pop());
-                double leftOperand = Double.parseDouble(rpn.pop());
-
-                if (!operator.isEmpty()) {
-                    switch (operator) {
-                        case "+" -> result = calculator.addition(leftOperand, rightOperand);
-                        case "-" -> result = calculator.subtraction(leftOperand, rightOperand);
-                        case "*" -> result = calculator.multiplication(leftOperand, rightOperand);
-                        case "/" -> result = calculator.division(leftOperand, rightOperand);
-                        case "^" -> result = Math.pow(leftOperand, rightOperand);
-                    }
-                    operands.push(result);
-                }
+        for (String s: rpn) {
+            if (isDigit(s)) {
+                operands.add(s);
             } else {
-                operands.push(Double.valueOf(rpn.pop()));
+                operator = s;
+
+                double rightOperand = Double.parseDouble(operands.remove(0));
+                double leftOperand = Double.parseDouble(operands.remove(0));
+
+                switch (operator) {
+                    case "+" -> result = calculator.addition(leftOperand, rightOperand);
+                    case "-" -> result = calculator.subtraction(leftOperand, rightOperand);
+                    case "*" -> result = calculator.multiplication(leftOperand, rightOperand);
+                    case "/" -> result = calculator.division(leftOperand, rightOperand);
+                    case "^" -> result = Math.pow(leftOperand, rightOperand);
+                }
+
+                operands.add(String.valueOf(result));
             }
 
         }
-        result = operands.pop();
         System.out.println("Result: " + result);
         return result;
     }
