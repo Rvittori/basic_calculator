@@ -1,67 +1,54 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Basic Calculator</title>
-</head>
-<body>
-<form class="calculate-form" action="calculator" method="post">
-    <div class="clac-display-container">
-        <input id="display" name="display-value" type="text" readonly>
+<c:import url="includes/head.html" />
 
-    </div>
-    <div class="calculator-btn-container">
-        <div class="calculator-btn-row">
-            <div class="calculator-btn-col">
+<div class="calculator-main-container">
+    <div class="calculator">
+        <form class="calculate-form" action="calculator" method="post">
+            <div class="clac-display-container">
+        <input id="display" name="display-value" type="text" readonly>
+            </div>
+            <div class="calculator-btn-container">
                 <button class="num-button" type="button" value="AC" onclick="clickOp('AC')">AC</button>
                 <button class="num-button" type="button" value="(" onclick="clickNum('(')">(</button>
                 <button class="num-button" type="button" value=")" onclick="clickNum(')')">)</button>
                 <button class="num-button" type="button" value="/" onclick="clickOp('/')">/</button>
             </div>
-        </div>
-        <div class="calculator-btn-row">
-            <div class="calculator-btn-col">
+            <div class="calculator-btn-container">
                 <button class="num-button" type="button" value="7" onclick="clickNum('7')">7</button>
                 <button class="num-button" type="button" value="8" onclick="clickNum('8')">8</button>
                 <button class="num-button" type="button" value="9" onclick="clickNum('9')">9</button>
                 <button class="num-button" type="button" value="*" onclick="clickOp('*')">x</button>
             </div>
-        </div>
-        <div class="calculator-btn-row">
-            <div class="calculator-btn-col">
+            <div class="calculator-btn-container">
                 <button class="num-button" type="button" value="4" onclick="clickNum('4')">4</button>
                 <button class="num-button" type="button" value="5" onclick="clickNum('5')">5</button>
                 <button class="num-button" type="button" value="6" onclick="clickNum('6')">6</button>
                 <button class="num-button" type="button" value="-" onclick="clickOp('-')">-</button>
             </div>
-        </div>
-        <div class="calculator-btn-row">
-            <div class="calculator-btn-col">
+            <div class="calculator-btn-container">
                 <button class="num-button" type="button" value="1" onclick="clickNum('1')">1</button>
                 <button class="num-button" type="button" value="2" onclick="clickNum('2')">2</button>
                 <button class="num-button" type="button" value="3" onclick="clickNum('3')">3</button>
                 <button class="num-button" type="button" value="+" onclick="clickOp('+')">+</button>
             </div>
-        </div>
-        <div class="calculator-btn-row">
-            <div class="calculator-btn-col">
+            <div class="calculator-btn-container">
                 <button class="num-button" type="button" value="0" onclick="clickNum('0')">0</button>
                 <button class="num-button" type="button" value="." onclick="clickOp('.')">.</button>
                 <button class="num-button" type="button" value="^" onclick="clickOp('^')">Pow</button>
                 <button class="num-button" type="submit" value="=">=</button>
                 <input type="hidden" name="action" value="calculate">
             </div>
-        </div>
-    </div>
-    <div class="calculator-btn-row">
-        <div class="calculator-btn-col">
+            <div class="calculator-btn-container">
             <c:if test="${message != null}">
                 <p><i>${message}</i></p>
             </c:if>
-        </div>
+            </div>
+        </form>
     </div>
-</form>
+</div>
+
+
 <script>
     function clickNum(num) {
         let display = document.getElementById("display");
@@ -86,5 +73,4 @@
     }
 </script>
 
-</body>
-</html>
+<c:import url="includes/footer.html" />
