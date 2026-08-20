@@ -107,22 +107,19 @@ public class CalculatorServlet extends HttpServlet {
                 }
             } else if (c == ')') {
                 while (!operators.isEmpty()) {
-                    String currentOnOpStack = operators.get(0);
+                    String currentOnOpStack = operators.get(operators.size() - 1);
 
                     if (!currentOnOpStack.equals("(")) {
-                        output.add(operators.remove(0));
+                        output.add(operators.remove(operators.size() - 1));
                     } else {
-                        operators.remove(0);
+                        operators.remove(operators.size() - 1);
                     }
                 }
                 i++;
             }
         }
-
-
-        int j = 0;
         while (!operators.isEmpty()) {
-            output.add(operators.remove(j));
+            output.add(operators.remove(operators.size() - 1));
         }
 
         System.out.println("Output stack: " + output);

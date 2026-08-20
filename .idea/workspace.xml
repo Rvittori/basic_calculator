@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7c2ea83-c43e-46c9-adf2-ec01060085d9" name="Changes" comment="Working on refactoring from stack logic to arrayList logic for easier left to right evaluation.">
+    <list default="true" id="f7c2ea83-c43e-46c9-adf2-ec01060085d9" name="Changes" comment="Fixed bug in getReversePostFix for operator index handling causing out of bounds error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorServlet.java" afterDir="false" />
     </list>
@@ -222,22 +222,7 @@
     <MESSAGE value="Fixed error in else if branch for managing closing parenthesis. Algorithm now works" />
     <MESSAGE value="Refined currentCharPrecedence &lt;= branch" />
     <MESSAGE value="Working on refactoring from stack logic to arrayList logic for easier left to right evaluation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on refactoring from stack logic to arrayList logic for easier left to right evaluation." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/CalculatorServlet.java</url>
-          <line>150</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/CalculatorServlet.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Fixed bug in getReversePostFix for operator index handling causing out of bounds error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in getReversePostFix for operator index handling causing out of bounds error" />
   </component>
 </project>
