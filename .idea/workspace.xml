@@ -9,8 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7c2ea83-c43e-46c9-adf2-ec01060085d9" name="Changes" comment="Fixed bug in getReversePostFix for operator index handling causing out of bounds error">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f7c2ea83-c43e-46c9-adf2-ec01060085d9" name="Changes" comment="Fixed bug in getReversePostFix for handling working at the end of the string rather than the front for final operators clean up">
       <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -223,6 +222,7 @@
     <MESSAGE value="Refined currentCharPrecedence &lt;= branch" />
     <MESSAGE value="Working on refactoring from stack logic to arrayList logic for easier left to right evaluation." />
     <MESSAGE value="Fixed bug in getReversePostFix for operator index handling causing out of bounds error" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in getReversePostFix for operator index handling causing out of bounds error" />
+    <MESSAGE value="Fixed bug in getReversePostFix for handling working at the end of the string rather than the front for final operators clean up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in getReversePostFix for handling working at the end of the string rather than the front for final operators clean up" />
   </component>
 </project>

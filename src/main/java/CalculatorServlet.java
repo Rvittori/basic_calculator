@@ -113,6 +113,7 @@ public class CalculatorServlet extends HttpServlet {
                         output.add(operators.remove(operators.size() - 1));
                     } else {
                         operators.remove(operators.size() - 1);
+                        break;
                     }
                 }
                 i++;
