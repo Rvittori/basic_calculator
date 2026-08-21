@@ -5,7 +5,7 @@
 <div class="calculator-main-container">
     <div class="calculator">
         <form class="calculate-form" action="calculator" method="post">
-            <div class="clac-display-container">
+            <div class="calc-display-container">
         <input id="display" name="display-value" type="text" readonly>
             </div>
             <div class="calculator-btn-container">
