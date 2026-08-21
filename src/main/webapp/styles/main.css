@@ -14,7 +14,19 @@
 }
 
 .calculator {
-    background-color: mediumpurple;
+    background-color: lightsteelblue;
     padding: 20px;
     border-radius: 10px;
+}
+
+.num-button {
+    border: 0;
+    outline: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 78px;
+    box-shadow: -5px -5px 10px rgba(0, 128, 255, 0.2), 3px 3px 5px rgba(0, 0, 0, 0.2);
+    background: transparent;
+    margin: 5px;
+
 }

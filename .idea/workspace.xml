@@ -9,9 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7c2ea83-c43e-46c9-adf2-ec01060085d9" name="Changes" comment="Fixed bug in getReversePostFix for loop on removing opening parenthesis">
+    <list default="true" id="f7c2ea83-c43e-46c9-adf2-ec01060085d9" name="Changes" comment="Added head and footer html files. Working on css for the jsp.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/styles/main.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,6 +238,7 @@
     <MESSAGE value="Fixed bug in getReversePostFix for operator index handling causing out of bounds error" />
     <MESSAGE value="Fixed bug in getReversePostFix for handling working at the end of the string rather than the front for final operators clean up" />
     <MESSAGE value="Fixed bug in getReversePostFix for loop on removing opening parenthesis" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in getReversePostFix for loop on removing opening parenthesis" />
+    <MESSAGE value="Added head and footer html files. Working on css for the jsp." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added head and footer html files. Working on css for the jsp." />
   </component>
 </project>

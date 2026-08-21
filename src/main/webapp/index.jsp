@@ -35,7 +35,7 @@
             <div class="calculator-btn-container">
                 <button class="num-button" type="button" value="0" onclick="clickNum('0')">0</button>
                 <button class="num-button" type="button" value="." onclick="clickOp('.')">.</button>
-                <button class="num-button" type="button" value="^" onclick="clickOp('^')">Pow</button>
+                <button class="num-button" type="button" value="^" onclick="clickOp('^')">pow</button>
                 <button class="num-button" type="submit" value="=">=</button>
                 <input type="hidden" name="action" value="calculate">
             </div>
