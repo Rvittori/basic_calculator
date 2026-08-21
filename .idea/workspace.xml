@@ -9,9 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7c2ea83-c43e-46c9-adf2-ec01060085d9" name="Changes" comment="Fixed typo in jsp display container name">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/styles/main.css" afterDir="false" />
+    <list default="true" id="f7c2ea83-c43e-46c9-adf2-ec01060085d9" name="Changes" comment="Okay I have the calculator looking the way I would like, just need to get the result displaying">
+      <change beforePath="$PROJECT_DIR$/src/main/java/CalculatorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatorServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,6 +240,7 @@
     <MESSAGE value="Added head and footer html files. Working on css for the jsp." />
     <MESSAGE value="Working on css, have colors picked and buttons spaced how I think I want" />
     <MESSAGE value="Fixed typo in jsp display container name" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed typo in jsp display container name" />
+    <MESSAGE value="Okay I have the calculator looking the way I would like, just need to get the result displaying" />
+    <option name="LAST_COMMIT_MESSAGE" value="Okay I have the calculator looking the way I would like, just need to get the result displaying" />
   </component>
 </project>

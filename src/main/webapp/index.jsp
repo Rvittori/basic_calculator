@@ -6,7 +6,7 @@
     <div class="calculator">
         <form class="calculate-form" action="calculator" method="post">
             <div class="calc-display-container">
-        <input id="display" name="display-value" type="text" readonly>
+        <input id="display" name="display-value" type="text" value="<c:if test="${result != null}">${result}</c:if>" readonly>
             </div>
             <div class="calculator-btn-container">
                 <button class="num-button" type="button" value="AC" onclick="clickOp('AC')">AC</button>
@@ -52,7 +52,6 @@
 <script>
     function clickNum(num) {
         let display = document.getElementById("display");
-
         display.value = display.value + num;
     }
 

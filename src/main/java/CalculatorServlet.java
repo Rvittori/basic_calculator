@@ -25,6 +25,8 @@ public class CalculatorServlet extends HttpServlet {
             ArrayList<String> reversePostFixExpression = getReversePostFix(cleanedExpression);
             double result = calculate(reversePostFixExpression);
 
+            req.setAttribute("result", result);
+
             String url = "/index.jsp";
             getServletContext().getRequestDispatcher(url)
                     .forward(req, resp);
